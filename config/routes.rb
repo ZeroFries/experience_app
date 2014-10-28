@@ -1,4 +1,16 @@
 Rails.application.routes.draw do
+  resources :experience_emotions
+
+  resources :experience_categories
+
+  resources :categories
+
+  resources :votes
+
+  resources :comments
+
+  resources :experiences
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

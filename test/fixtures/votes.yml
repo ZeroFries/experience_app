@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  up: false
+  user_id: 
+  experience_id: 
+
+two:
+  up: false
+  user_id: 
+  experience_id: 
