@@ -22,6 +22,8 @@ ActiveRecord::Schema.define(version: 20141028231535) do
     t.datetime "updated_at"
   end
 
+  add_index "categories", ["name"], name: "index_categories_on_name", using: :btree
+
   create_table "comments", force: true do |t|
     t.integer  "user_id"
     t.integer  "experience_id"
@@ -38,6 +40,8 @@ ActiveRecord::Schema.define(version: 20141028231535) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "emotions", ["name"], name: "index_emotions_on_name", using: :btree
 
   create_table "experience_categories", force: true do |t|
     t.integer  "experience_id"
@@ -77,10 +81,14 @@ ActiveRecord::Schema.define(version: 20141028231535) do
     t.string   "username"
     t.string   "password"
     t.string   "password_confirmation"
+    t.string   "password_digest"
     t.boolean  "account_confirmed"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "users", ["email"], name: "index_users_on_email", using: :btree
+  add_index "users", ["username"], name: "index_users_on_username", using: :btree
 
   create_table "votes", force: true do |t|
     t.boolean  "up"

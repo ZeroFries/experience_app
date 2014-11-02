@@ -5,5 +5,7 @@ class CreateEmotions < ActiveRecord::Migration
 
       t.timestamps
     end
+
+    add_index :emotions, :name
   end
 end
