@@ -9,4 +9,13 @@ class Experience < ActiveRecord::Base
   has_many :comments
   has_many :experience_categories
   has_many :categories, through: :experience_categories
+
+  def created_at_date
+  	return nil if self.created_at.nil?
+  	self.created_at.to_date
+  end
+
+  def rating
+  	self.votes.reduce(0) {|sum, vote| sum + vote.value}
+  end
 end
