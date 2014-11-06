@@ -68,9 +68,8 @@ class ExperienceRepositoryTest < ActiveSupport::TestCase
 
   test '#search order_by' do
     experiences = create_experiences
-    results = @repo.search #({}, 'updated_at')
-    p results
-    # assert_equal experiences.map(&:id).reverse, results.map(&:id)
+    results = @repo.search({}, 'updated_at')
+    assert_equal experiences.map(&:id).reverse, results.map(&:id)
   end
 
   test '#search by arbitrary attributes' do
@@ -84,7 +83,7 @@ class ExperienceRepositoryTest < ActiveSupport::TestCase
   	results = @repo.search price: 0, user_id: current_user.id
   	assert_equal 1, results.size
 
-  	results = @repo.search price: 1, user_id: current_user.id
+  	results = @repo.search price: 0, user_id: 999
   	assert_equal 0, results.size
   end
 

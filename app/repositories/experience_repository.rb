@@ -1,10 +1,12 @@
 class ExperienceRepository < BaseRepository
 	def search(search_terms={}, order_by='created_at', limit=nil)
 		search_terms = symbolize_attributes search_terms
-		query = Experience.all.includes(:emotions).includes(:categories)
+		# query = Experience.includes(:emotions)
+		# query = Experience.includes(:categories)
+		query = Experience.all
 
-		query = query.where(user_id: search_terms[:user_id]) if search_terms[:user_id]
-		query = query.where(price: search_terms[:price]) if search_terms[:price]
+		query = query.where{user_id == search_terms[:user_id]} if search_terms[:user_id]
+		query = query.where{price <= search_terms[:price]} if search_terms[:price]
 		
 		search_terms[:keywords].each do |keyword|
 			start_of_word_term = "% #{keyword}%"

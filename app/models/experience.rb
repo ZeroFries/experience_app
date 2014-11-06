@@ -18,4 +18,20 @@ class Experience < ActiveRecord::Base
   def rating
   	self.votes.reduce(0) {|sum, vote| sum + vote.value}
   end
+
+  def emotion_names
+    if self.emotions.class == Emotion::ActiveRecord_Associations_CollectionProxy
+      self.emotions.pluck :name
+    else
+      self.emotions.map &:name
+    end
+  end
+
+  def category_names
+    if self.emotions.class == Category::ActiveRecord_Associations_CollectionProxy
+      self.categories.pluck :name
+    else
+      self.categories.map &:name
+    end
+  end
 end
