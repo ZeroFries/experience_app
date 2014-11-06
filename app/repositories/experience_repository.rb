@@ -1,7 +1,7 @@
 class ExperienceRepository < BaseRepository
 	def search(search_terms={}, order_by='created_at', limit=nil)
 		search_terms = symbolize_attributes search_terms
-		query = Experience.all
+		query = Experience.all.includes(:emotions).includes(:categories)
 
 		query = query.where(user_id: search_terms[:user_id]) if search_terms[:user_id]
 		query = query.where(price: search_terms[:price]) if search_terms[:price]
@@ -10,9 +10,6 @@ class ExperienceRepository < BaseRepository
 			start_of_word_term = "% #{keyword}%"
 			start_of_word_in_parentheses_term = "%(#{keyword}%"
 			start_of_title_term = "#{keyword}%"
-			search  = "title LIKE #{start_of_word_term} OR description LIKE #{start_of_word_term} OR" +
-				"title LIKE #{start_of_title_term} OR description LIKE #{start_of_title_term} OR" +
-				"title LIKE #{start_of_word_in_parentheses_term} OR description LIKE #{start_of_word_in_parentheses_term}"
 			query = query.where{
 				(title =~ start_of_word_term) | (description =~ start_of_word_term) |
 				(title =~ start_of_word_in_parentheses_term) | (description =~ start_of_word_in_parentheses_term) |
@@ -36,7 +33,9 @@ class ExperienceRepository < BaseRepository
 			query = query.joins(:categories).where{categories.name.in(search_terms[:categories])} 
 		end
 
-		query.uniq!
+		query.order order_by
+		query.limit limit if limit
+		query.distinct
 	end
 
 	# returns hash with unique sort_by attribute as key, matched models (sub-sorted by rating) as value
