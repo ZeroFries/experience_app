@@ -1,0 +1,10 @@
+<div class="experience-card-container">
+	<% @experiences.each_slice(3).to_a.each do |experience_row_group| %>
+		<div class="section group">
+			<% experience_row_group.each do |experience| %>
+				<%= render 'experience_card', experience: experience %>
+			<% end %>
+		</div>
+		
+	<% end %>
+</div>

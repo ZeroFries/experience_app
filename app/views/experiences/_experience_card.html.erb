@@ -1,0 +1,14 @@
+<div class="col span_1_of_3">
+	<article class="experience-card">
+		<span class="rating"><%= experience.rating %>
+		<!-- image -->
+		<span class="title"><%= experience.title %></span>
+		<span class="description"><%= trailing_description experience.description %></span>
+		<span class="mood">
+			<% experience.emotions.each do |emotion| %>
+				<%= render "emotions/label", emotion: emotion %>
+			<% end %>
+		</span>
+
+	</article>
+</div>

@@ -6,4 +6,8 @@ module ExperiencesHelper
 			(ONE_VOTE * experience.rating) + experience.created_at.to_i
 		end.reverse
 	end
+
+	def trailing_description(description)
+		description ? "#{description[0..30]}..." : ""
+	end
 end

@@ -18,6 +18,8 @@ class ExperiencesController < ApplicationController
 	end
 
 	def update
+		@experience, success, error = @repo.update params[:experience]
+		render_json_show success, error
 	end
 
 	def show
@@ -26,11 +28,12 @@ class ExperiencesController < ApplicationController
 	end
 
 	def destroy
+		@repo.delete params[:id]
+		render json: { message: "Successfully deleted experience with id #{params[:id]}" }
 	end
 
 	def index
 		@experiences = @repo.search params[:filters]
-		# render json: { experiences: sort_by_most_recently_popular(@experiences) }	
 	end
 
 	protected
