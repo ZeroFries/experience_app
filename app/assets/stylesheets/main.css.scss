@@ -1,0 +1,15 @@
+@font-face {
+    font-family: 'Karma';
+    src: url('/assets/Karma-Regular.ttf');
+    src: url('/assets/Karma-Regular.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'KarmaBold';
+    src: url('/assets/Karma-Bold.ttf');
+    src: url('/assets/Karma-Bold.ttf') format('truetype');
+}
+
+h2 {
+	font-family: 'KarmaBold' !important;
+}

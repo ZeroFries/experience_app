@@ -1,8 +1,8 @@
 class ExperienceRepository < BaseRepository
 	def search(search_terms={}, order_by='created_at', limit=nil)
 		search_terms = symbolize_attributes search_terms
-		# query = Experience.includes(:emotions)
-		# query = Experience.includes(:categories)
+		query = Experience.includes([:experience_emotions, :emotions])
+		query = Experience.includes([:experience_categories, :categories])
 		query = Experience.all
 
 		query = query.where{user_id == search_terms[:user_id]} if search_terms[:user_id]

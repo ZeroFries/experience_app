@@ -8,6 +8,8 @@ module ExperiencesHelper
 	end
 
 	def trailing_description(description)
-		description ? "#{description[0..30]}..." : ""
+		if description
+		  description.length > 60 ? "#{description[0..60]}..."  : description
+		end
 	end
 end
