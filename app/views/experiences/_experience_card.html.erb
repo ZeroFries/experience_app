@@ -4,20 +4,24 @@
 		<%= image_tag experience.avatar.url, class: "circular ui image small thumbnail" %>
 		<h3 class="title ui header"><%= experience.title %></h3>
 		<h3 class="description"><%= trailing_description experience.description %></h3>
-		<div class="label-group mood ui small labels">
-			<% experience.emotions.each do |emotion| %>
-				<%= render "emotions/label", emotion: emotion %>
-			<% end %>
-		</div>
-		<div class="label-group tags ui tiny labels">
-			<% experience.categories.each do |category| %>
-				<%= render "categories/label", category: category %>
-			<% end %>
-		</div>
+		<% if experience.emotions.any? %>
+			<div class="label-group mood ui small labels">
+				<% experience.emotions.each do |emotion| %>
+					<%= render "emotions/label", emotion: emotion %>
+				<% end %>
+			</div>
+		<% end %>
+		<% if experience.categories.any? %>
+			<div class="label-group tags ui tiny labels">
+				<% experience.categories.each do |category| %>
+					<%= render "categories/label", category: category %>
+				<% end %>
+			</div>
+		<% end %>
 		<% if experience.user %>
 			<span class="user-tag">Submitted by 
 				<i style="font-style: italic;"><%= experience.user.username %></i>
-				<%#= date-formatter experience.created_at %>
+				<%= time_ago experience.created_at %>
 			</span>
 		<% end %>
 

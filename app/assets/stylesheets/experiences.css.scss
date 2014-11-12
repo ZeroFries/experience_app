@@ -5,7 +5,11 @@
 
 .experience-card {
 	width: 95%;
-	margin: auto;
+	margin: 20px auto;
+
+	.description {
+		font-family: Karma;
+	}
 
 	.thumbnail {
 		display: block;
@@ -19,9 +23,14 @@
 
 	.label-group {
 		display: block;
+		background: #5C6166;
+		border-radius: 10px;
+		width: auto;
+		padding: 2px;
+		padding-left: 9px;
 		margin: 6px;
 		& .label {
-			font-size: 10px !important;
+			font-size: 8.5px !important;
 		}
 	}
 }
