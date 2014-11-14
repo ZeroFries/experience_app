@@ -1,8 +1,9 @@
 <div class="experience-card-container">
 	<% @experiences.each_slice(3).to_a.each do |experience_row_group| %>
 		<div class="section group">
-			<% experience_row_group.each do |experience| %>
+			<% experience_row_group.each_with_index do |experience, i| %>
 				<%= render 'experience_card', experience: experience %>
+				<% unless i == 2 %><div class="ui vertical divider"><%= i %></div>	<% end %>
 			<% end %>
 		</div>
 		

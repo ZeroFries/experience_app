@@ -2,6 +2,7 @@
 	<article class="experience-card ui" style="position: relative;">
 		<span class="rating ui label small top left attached black" title="Rating"><%= experience.rating %></span>
 		<%= image_tag experience.avatar.url, class: "circular ui image small thumbnail" %>
+		<span class="rating ui label small top right attached purple" title="Price">$10-12<%#= experience.price %></span>
 		<h3 class="title ui header"><%= experience.title %></h3>
 		<h3 class="description"><%= trailing_description experience.description %></h3>
 		<% if experience.emotions.any? %>

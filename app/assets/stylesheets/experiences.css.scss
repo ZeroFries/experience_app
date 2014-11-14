@@ -6,9 +6,15 @@
 .experience-card {
 	width: 95%;
 	margin: 20px auto;
+	font-family: TallFilm !important;
+
+	.title{
+		font-size: 2em !important;
+	}
 
 	.description {
-		font-family: Karma;
+		font-size: 1.2em !important;
+		letter-spacing: 0.2em;
 	}
 
 	.thumbnail {
@@ -21,6 +27,11 @@
 		text-align: center;
 	}
 
+	.rating {
+		font-family: Karma;
+		font-size: 0.6 !important;
+	}
+
 	.label-group {
 		display: block;
 		background: #5C6166;
@@ -30,7 +41,8 @@
 		padding-left: 9px;
 		margin: 6px;
 		& .label {
-			font-size: 8.5px !important;
+			font-family: Karma;
+			font-size: 0.6 !important;
 		}
 	}
 }
