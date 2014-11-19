@@ -9,6 +9,7 @@ class ExperiencesController < ApplicationController
 	end
 
 	def create
+		p params
 		@experience, success, error = @repo.create params[:experience]
 		render_json_show success, error
 	end

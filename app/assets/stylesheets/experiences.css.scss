@@ -46,3 +46,34 @@
 		}
 	}
 }
+
+.experience-form-container{
+	width: 60%;
+	margin: auto !important;
+	h2 {
+		font-size: 2em !important;
+	}
+
+	.experience-form {
+		font-family: TallFilm !important;
+		.field {
+		}
+		label {
+			font-size: 1.6em !important;
+			color: black !important;
+			font-weight: bold;
+		}
+		#step-container {
+			margin-bottom: 1px;
+			input {
+				margin-bottom: 4pt;
+			}
+		}
+		#add-step { margin-bottom: 6pt; }
+		.submit {
+			display: block;
+			margin: auto;
+		}
+	}
+}
+

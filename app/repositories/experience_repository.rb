@@ -2,8 +2,8 @@ class ExperienceRepository < BaseRepository
 	def search(search_terms={}, order_by='created_at', limit=nil)
 		search_terms = symbolize_attributes search_terms
 		query = Experience.includes([:experience_emotions, :emotions])
-		query = Experience.includes([:experience_categories, :categories])
-		query = Experience.all
+		query = query.includes([:experience_categories, :categories])
+		query = query.includes :steps
 
 		query = query.where{user_id == search_terms[:user_id]} if search_terms[:user_id]
 		query = query.where{price <= search_terms[:price]} if search_terms[:price]
@@ -38,6 +38,13 @@ class ExperienceRepository < BaseRepository
 		query.order order_by
 		query.limit limit if limit
 		query.distinct
+	end
+
+	def find(query)
+		models, success = super query
+		models.includes([:experience_emotions, :emotions]).includes([:experience_categories, :categories]).includes(:steps) if success
+
+		return models, success
 	end
 
 	# returns hash with unique sort_by attribute as key, matched models (sub-sorted by rating) as value

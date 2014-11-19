@@ -11,5 +11,7 @@ Rails.application.routes.draw do
 
   resources :experiences
 
+  resources :emotions
+
   root to: 'experiences#index'
 end

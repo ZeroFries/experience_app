@@ -1,4 +1,4 @@
-# attributes: title, description, price, time_spent_in_minutes, location_dependent, user_id
+# attributes: title, description, price, time_required, location_dependent, user_id, materials, steps
 
 class Experience < ActiveRecord::Base
   belongs_to :user
@@ -7,6 +7,8 @@ class Experience < ActiveRecord::Base
   validates_attachment_content_type :avatar, :content_type => /\Aimage\/.*\Z/
   has_many :experience_emotions
   has_many :emotions, through: :experience_emotions
+  has_many :steps
+  accepts_nested_attributes_for :steps, allow_destroy: true
   has_many :votes
   has_many :comments
   has_many :experience_categories

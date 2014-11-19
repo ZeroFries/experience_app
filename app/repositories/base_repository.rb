@@ -1,5 +1,5 @@
 class BaseRepository
-	attr_accessor :current_user, :opts
+	attr_accessor :current_user, :opts, :klass
 	SANITIZED_PARAMS = [:id, :created_at, :updated_at, :created_by_name, :updated_by_name]
 
 
@@ -60,7 +60,7 @@ class BaseRepository
 		return models.first, success, error
 	end
 
-	def find(query)
+	def find(query={})
 		models = klass.send :where, query
 		return models, models.any?
 	end

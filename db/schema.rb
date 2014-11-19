@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141109215240) do
+ActiveRecord::Schema.define(version: 20141117171517) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -70,7 +70,6 @@ ActiveRecord::Schema.define(version: 20141109215240) do
     t.string   "title"
     t.text     "description"
     t.integer  "price"
-    t.integer  "time_spent_in_minutes"
     t.boolean  "location_dependent"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -78,9 +77,21 @@ ActiveRecord::Schema.define(version: 20141109215240) do
     t.string   "avatar_content_type"
     t.integer  "avatar_file_size"
     t.datetime "avatar_updated_at"
+    t.string   "time_required"
+    t.text     "materials"
   end
 
   add_index "experiences", ["user_id"], name: "index_experiences_on_user_id", using: :btree
+
+  create_table "steps", force: true do |t|
+    t.string   "description"
+    t.integer  "experience_id"
+    t.integer  "ordinal"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "steps", ["experience_id"], name: "index_steps_on_experience_id", using: :btree
 
   create_table "users", force: true do |t|
     t.string   "email"
