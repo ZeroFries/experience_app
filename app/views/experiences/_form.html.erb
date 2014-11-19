@@ -18,12 +18,13 @@
 		<div class="field ui input mini" id="step-container">
 			<%= f.label 'Steps to reproduce' %>
 		</div>
-		<button id="add-step" class="ui purple button mini">Add Step</button>
+		<button type="button" id="add-step" class="ui purple button mini" onkeypress="return null">Add Step</button>
  
 		<!-- TODO: Figure out if emotions should by nouns or verbs (relation vs relaxing) -->
 		<div class="field ui input mini" id="step-container">
 			<%= f.label 'Emotions involved' %>
-		 <input class="typeahead" type="text" placeholder="E.g. Relaxation, Contemplation">
+			<div id="emotions-label-container" class="label-group mood ui small labels"></div>
+		 <input id="emotions" class="typeahead" type="text" placeholder="E.g. Relaxation, Contemplation">
 		</div>
 
 		<div class="field ui input mini" id="step-container">

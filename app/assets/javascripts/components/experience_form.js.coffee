@@ -7,8 +7,10 @@ stepInputHTML = () ->
 	"<input placeholder=\"Step #{stepCount+1}\" type=\"text\" name=\"experience[steps_attributes][][description]\" class=\"description\">" +
 	"<div class=\"ui corner red large label remove-step\" title=\"Remove Step\"><i class=\"remove icon\">" +
 	"</i></div></input></div></div>"
-	
 
+labelHTML = (obj) ->
+	"<span class=\"category ui label #{obj.label_colour}\">" +
+	"#{obj.name}</span>"
 
 $ ->
 	experienceForm = flight.component ->
@@ -20,19 +22,15 @@ $ ->
 			$('.ui.selection.dropdown').dropdown()
 			$('.ui.checkbox').checkbox()
 			$('.ui.accordion').accordion()
-			
-			$('#emotions .typeahead').typeahead({
-				hint: true,
-			},	
-			{
-				name: 'emotions',
-				displayKey: 'value',
-				source: substringMatcher(window.emotionsService.getEmotions())
-			})
 
 		@formEvents = ->
+			@on 'keypress', @preventAutoSubmit
 			@on document, 'removeStep', @removeStep
 			@on document, 'addStep', @addStep
+			@on document, 'typeahead:autocompleted', @addLabel
+
+		@preventAutoSubmit = (e) ->
+			e.preventDefault() if e.keyCode == 13
 				
 		@addStep = () ->
 			step = $(stepInputHTML())
@@ -46,6 +44,14 @@ $ ->
 			for step, i in $('.experience-step')
 				$(step).find('.description').attr('placeholder', "Step #{i+1}")
 				$(step).find('.ordinal').attr('value', i)
+
+		@addLabel = (e, data, dataName) ->
+			console.log e
+			console.log dataName
+			dataName = data.dataName if dataName == undefined
+			console.log dataName
+			$label_container = $("##{dataName}-label-container")
+			$label_container.append(labelHTML(data))
 
 
 	addStep = flight.component ->

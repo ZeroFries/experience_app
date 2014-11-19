@@ -18,6 +18,6 @@ class EmotionsControllerTest < ActionController::TestCase
     assert_equal 3, emotions_json.count
     emotion_json = emotions_json.first
     assert_equal 'Anger', emotion_json['name']
-    assert_equal 'Anger', emotion_json['label_colour']
+    assert_equal 'red', emotion_json['label_colour']
   end
 end

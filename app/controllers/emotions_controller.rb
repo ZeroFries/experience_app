@@ -31,7 +31,7 @@ class EmotionsController < ApplicationController
 	end
 
 	def index
-		@emotions = @repo.find
+		@emotions, success, error = @repo.find
 	end
 
 	protected

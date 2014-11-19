@@ -1,4 +1,4 @@
-var substringMatcher = function(strs) {
+var substringMatcher = function(objs, key) {
 	return function findMatches(q, cb) {
 		var matches, substrRegex;
  
@@ -10,11 +10,11 @@ var substringMatcher = function(strs) {
 	 
 		// iterate through the pool of strings and for any string that
 		// contains the substring `q`, add it to the `matches` array
-		$.each(strs, function(i, str) {
-			if (substrRegex.test(str)) {
+		$.each(objs, function(i, obj) {
+			if (substrRegex.test(obj[key])) {
 				// the typeahead jQuery plugin expects suggestions to a
 				// JavaScript object, refer to typeahead docs for more info
-				matches.push({ value: str });
+				matches.push(obj);
 			}
 		});
  
