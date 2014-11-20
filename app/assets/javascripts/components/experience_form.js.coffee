@@ -8,9 +8,10 @@ stepInputHTML = () ->
 	"<div class=\"ui corner red large label remove-step\" title=\"Remove Step\"><i class=\"remove icon\">" +
 	"</i></div></input></div></div>"
 
-labelHTML = (obj) ->
-	"<span class=\"category ui label #{obj.label_colour}\">" +
-	"#{obj.name}</span>"
+labelHTML = (obj, objType) ->
+	"<span class=\"category ui label #{obj.label_colour}\">#{obj.name}" +
+	"<input type=\"hidden\" name=\"experience[experience_#{objType}s_attributes][][#{objType}_id]\" value=\"#{obj.id}\" class=\"#{objType}_id\"></input>" + 
+	"</span>"
 
 $ ->
 	experienceForm = flight.component ->
@@ -46,12 +47,9 @@ $ ->
 				$(step).find('.ordinal').attr('value', i)
 
 		@addLabel = (e, data, dataName) ->
-			console.log e
-			console.log dataName
 			dataName = data.dataName if dataName == undefined
-			console.log dataName
 			$label_container = $("##{dataName}-label-container")
-			$label_container.append(labelHTML(data))
+			$label_container.append(labelHTML(data, dataName.slice(0, -1)))
 
 
 	addStep = flight.component ->

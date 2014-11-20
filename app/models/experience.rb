@@ -6,12 +6,14 @@ class Experience < ActiveRecord::Base
   has_attached_file :avatar, :styles => { :medium => "300x300>", :thumb => "100x100>" }, :default_url => 'fractal.gif'
   validates_attachment_content_type :avatar, :content_type => /\Aimage\/.*\Z/
   has_many :experience_emotions
+  accepts_nested_attributes_for :experience_emotions, allow_destroy: true
   has_many :emotions, through: :experience_emotions
   has_many :steps
   accepts_nested_attributes_for :steps, allow_destroy: true
   has_many :votes
   has_many :comments
   has_many :experience_categories
+  accepts_nested_attributes_for :experience_categories, allow_destroy: true
   has_many :categories, through: :experience_categories
 
   def created_at_date
