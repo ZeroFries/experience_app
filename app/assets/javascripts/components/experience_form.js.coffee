@@ -10,8 +10,8 @@ stepInputHTML = () ->
 
 labelHTML = (obj, objType) ->
 	"<span class=\"category ui label #{obj.label_colour}\">#{obj.name}" +
-	"<input type=\"hidden\" name=\"experience[experience_#{objType}s_attributes][][#{objType}_id]\" value=\"#{obj.id}\" class=\"#{objType}_id\"></input>" + 
-	"</span>"
+	"<input type=\"hidden\" name=\"experience[experience_#{objType}s_attributes][][#{objType}_id]\" value=\"#{obj.id}\" class=\"#{objType}_id\">" + 
+	"</input></span>"
 
 $ ->
 	experienceForm = flight.component ->

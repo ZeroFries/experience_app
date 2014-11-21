@@ -5,19 +5,23 @@ $ ->
 			@on document, 'typeahead:closed', @resetTypeAhead
 			@on document, 'keypress', @checkForEnteredWord
 			if @$node.attr('id') == 'emotions'
-				@on document, 'initalizeEmotionsTypeAhead', @initializeEmotionsTypeAhead
+				@on document, 'initalizeEmotionsTypeAhead', @initializeTypeAhead
+			if @$node.attr('id') == 'categories'
+				@on document, 'initalizeCategoriesTypeAhead', @initializeTypeAhead
 
-		@initializeEmotionsTypeAhead = (e, data) ->
-				@dataList = data.emotions
 
-				@$node.typeahead({
-					hint: true
-				},	
-				{
-					name: 'emotions',
-					displayKey: 'name',
-					source: substringMatcher(@dataList, 'name')
-				})
+		@initializeTypeAhead = (e, data) ->
+			objType = @$node.attr('id')
+			@dataList = data[objType]
+
+			@$node.typeahead({
+				hint: true
+			},	
+			{
+				name: objType,
+				displayKey: 'name',
+				source: substringMatcher(@dataList, 'name')
+			})
 
 		@resetTypeAhead = (e) ->
 			$('.typeahead').typeahead('close');
@@ -36,3 +40,4 @@ $ ->
 					@trigger document, 'typeahead:noMatch'
 
 	typeAhead.attachTo '#emotions.typeahead'
+	typeAhead.attachTo '#categories.typeahead'
