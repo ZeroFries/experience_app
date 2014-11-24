@@ -31,10 +31,13 @@
 		font-family: Karma;
 		font-size: 0.6 !important;
 	}
+}
 
-	.label-group {
+/* TODO: get labels and buttons down. they should not look the same!! */
+
+.label-group {
 		display: block;
-		background: #5C6166;
+		/*background: #5C6166;*/
 		border-radius: 10px;
 		width: auto;
 		padding: 2px;
@@ -42,10 +45,12 @@
 		margin: 6px;
 		& .label {
 			font-family: Karma;
-			font-size: 0.6 !important;
+			font-weight: bold;
+			line-height: 1.1em;
+			letter-spacing: 0.5em;
+			font-size: 0.7 !important;
 		}
 	}
-}
 
 .experience-form-container{
 	width: 60%;
@@ -57,11 +62,16 @@
 	.experience-form {
 		font-family: TallFilm !important;
 		.field {
+			margin-top: 10px;
+		}
+		textarea {
+			font-size: 13px;
 		}
 		label {
 			font-size: 1.6em !important;
 			color: black !important;
 			font-weight: bold;
+			margin-bottom: 10px !important;
 		}
 		#step-container {
 			margin-bottom: 1px;
@@ -73,6 +83,12 @@
 		.submit {
 			display: block;
 			margin: auto;
+		}
+		.tt-input {
+			width: 415% !important;
+		}
+		.remove-step {
+			cursor: pointer;
 		}
 	}
 }
