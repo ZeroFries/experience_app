@@ -13,7 +13,7 @@ labelHTML = (obj, objType) ->
 	"<input type=\"hidden\" name=\"experience[experience_#{objType}s_attributes][][#{objType}_id]\" value=\"#{obj.id}\" class=\"#{objType}_id\">" + 
 	"</input></span>"
 
-experienceForm = flight.component ->
+window.experienceForm.component = flight.component ->
 	@after 'initialize', ->
 		@initializeUI()
 		@formEvents()
@@ -63,39 +63,58 @@ removeStep = flight.component ->
 
 # ********* Form Validation *********
 
-validateForm = (form) ->
+window.experienceForm.validate = (form) ->
+
+	$.fn.form.settings.rules.timeExpression = (s) ->
+		# eg: 14-15 minutes; 10.5-12.5s; 8 days 
+		return true if s == '' or s == null
+		units = [
+			's|second(s?)|sec(s?)',
+			'm|minute(s?)|min(s?)',
+			'h|hour(s?)',
+			'd|day(s?)',
+			'w|week(s?)',
+			'month(s?)'
+		].join("|")
+		numberRange = "(\\d+(\\.\\d+)?(\\-\\d+(\\.\\d+)?)?\\s?)"
+		matcher = new RegExp("#{numberRange}(#{units})\\s", "i")
+		matcher.test "#{s} "
+
 	$(form).form({
+	  time: {
+	  	identifier: 'experience_time_required'
+		  rules: [
+		  	{
+		  		type: 'timeExpression',
+		  		prompt: 'Time required must be a number or range plus unit of time. Examples: 12-15 minutes; 1.5 hours'
+		  	}
+		  ]
+		},
 	  title: {
-	    identifier  : 'experience_title',
+	    identifier: 'experience_title',
 	    rules: [
 	      {
-	        type   : 'empty',
-	        prompt : 'Give your experience a title'
+	        type: 'empty',
+	        prompt: 'Give your experience a title'
 	      }
 	    ]
 	  },
 	  description: {
-	    identifier  : 'experience_description',
+	    identifier: 'experience_description',
 	    rules: [
 	      {
-	        type   : 'empty',
-	        prompt : 'Give your experience a description'
+	        type: 'empty',
+	        prompt: 'Give your experience a description'
 	      }
 	    ]
 	  },
 	  step: {
-	    identifier  : 'step',
+	    identifier: 'step',
 	    rules: [
 	      {
-	        type   : 'empty',
-	        prompt : 'Blank step(s)'
+	        type: 'empty',
+	        prompt: 'A step was left blank'
 	      }
 	    ]
 	  }
 	})
-
-$ ->
-	experienceForm.attachTo '#experience-form'
-	validateForm '#experience-form'
-
-	

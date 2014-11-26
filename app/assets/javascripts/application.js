@@ -17,6 +17,7 @@
 //= require turbolinks
 //= require semantic
 //= require type_ahead
+//= require main
 //= require emotions
 //= require categories
 //= require_tree .

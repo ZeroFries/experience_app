@@ -15,6 +15,7 @@
 			<%= f.text_field :materials, placeholder: 'E.g. Pair of good shoes, *jacket, *MP3' %>
 		</div>
 
+		<!-- TODO: steps, emotions, and categories from existing experience -->
 		<div class="field ui input mini" id="step-container">
 			<%= f.label 'Steps to reproduce' %>
 		</div>
@@ -56,3 +57,14 @@
 		<%= f.submit "ADD EXPERIENCE", class: "ui large green button submit" %>
 	<% end %>
 </div>
+
+<script>
+	window.experienceForm.component.attachTo('#experience-form');
+	window.experienceForm.validate('#experience-form');
+
+	window.typeAhead.component.attachTo('#emotions.typeahead');
+	window.typeAhead.component.attachTo('#categories.typeahead');
+
+	window.emotionsService.getEmotions();
+	window.categoriesService.getCategories();
+</script>

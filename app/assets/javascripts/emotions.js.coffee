@@ -3,8 +3,8 @@ class @emotionsService
 	# TODO: REDIS CACHE EMOTIONS
 		$.ajax('/emotions').done (data) ->
 			@emotions = data.emotions
-			$(document).trigger 'initalizeEmotionsTypeAhead', {'emotions': @emotions}
+			$(document).trigger 'emotions:indexFetched', {'emotions': @emotions}
 			@emotions
 
-$ ->
-	window.emotionsService.getEmotions()
+# $ ->
+# 	window.emotionsService.getEmotions()

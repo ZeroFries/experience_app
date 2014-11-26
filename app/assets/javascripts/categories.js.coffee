@@ -3,8 +3,8 @@ class @categoriesService
 	# TODO: REDIS CACHE CATEGORIES
 		$.ajax('/categories').done (data) ->
 			@categories = data.categories
-			$(document).trigger 'initalizeCategoriesTypeAhead', {'categories': @categories}
+			$(document).trigger 'categories:indexFetched', {'categories': @categories}
 			@categories
 
-$ ->
-	window.categoriesService.getCategories()
+# $ ->
+# 	window.categoriesService.getCategories()
