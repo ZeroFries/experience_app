@@ -6,8 +6,13 @@
 		</div>
 
 		<div class="field ui input mini">
-			<%= f.label 'Brief description' %>
+			<%= f.label 'Brief description' %>	
 			<%= f.text_area :description, placeholder: 'E.g. Get outside and enjoy some fresh air and exercise!' %>
+		</div>
+
+		<div class="field ui input mini">
+			<%= f.label 'Upload an associated image' %>	
+			<%= f.file_field :avatar %>
 		</div>
 
 		<div class="field ui input mini ui input mini">

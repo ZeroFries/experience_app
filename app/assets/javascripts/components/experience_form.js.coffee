@@ -8,9 +8,10 @@ stepInputHTML = () ->
 	"<div class=\"ui corner red large label remove-step\" title=\"Remove Step\"><i class=\"remove icon\">" +
 	"</i></div></input></div></div>"
 
-labelHTML = (obj, objType) ->
+labelHTML = (obj, objTypeSingle, objTypePlural) ->
+	console.log objTypeSingle
 	"<span class=\"category ui label #{obj.label_colour}\">#{obj.name}" +
-	"<input type=\"hidden\" name=\"experience[experience_#{objType}s_attributes][][#{objType}_id]\" value=\"#{obj.id}\" class=\"#{objType}_id\">" + 
+	"<input type=\"hidden\" name=\"experience[experience_#{objTypePlural}_attributes][][#{objTypeSingle}_id]\" value=\"#{obj.id}\" class=\"#{objTypeSingle}_id\">" + 
 	"</input></span>"
 
 window.experienceForm.component = flight.component ->
@@ -49,8 +50,12 @@ window.experienceForm.component = flight.component ->
 
 	@addLabel = (e, data, dataName) ->
 		dataName = data.dataName if dataName == undefined
+		nameToSingular = {
+			'emotions': 'emotion',
+			'categories': 'category'
+		}
 		$label_container = $("##{dataName}-label-container")
-		$label_container.append(labelHTML(data, dataName.slice(0, -1)))
+		$label_container.append(labelHTML(data, nameToSingular[dataName], dataName))
 
 removeStep = flight.component ->
 	@after 'initialize', ->
@@ -64,7 +69,7 @@ removeStep = flight.component ->
 # ********* Form Validation *********
 
 window.experienceForm.validate = (form) ->
-
+	$.fn.form.settings.keyboardShortcuts = false
 	$.fn.form.settings.rules.timeExpression = (s) ->
 		# eg: 14-15 minutes; 10.5-12.5s; 8 days 
 		return true if s == '' or s == null
@@ -79,6 +84,13 @@ window.experienceForm.validate = (form) ->
 		numberRange = "(\\d+(\\.\\d+)?(\\-\\d+(\\.\\d+)?)?\\s?)"
 		matcher = new RegExp("#{numberRange}(#{units})\\s", "i")
 		matcher.test "#{s} "
+
+	$.fn.form.settings.rules.isImage = (s) ->
+		formats = [
+			'jpg', 'bmp', 'png', 'gif'
+		].join("|")
+		matcher = new RegExp(formats, "i")
+		matcher.test s
 
 	$(form).form({
 	  time: {
@@ -108,6 +120,19 @@ window.experienceForm.validate = (form) ->
 	      }
 	    ]
 	  },
+	  avatar: {
+	    identifier: 'experience_avatar',
+	    rules: [
+	      {
+	        type: 'empty',
+	        prompt: 'Upload an image which reminds you of your experience'
+	      },
+	      {
+	        type: 'isImage',
+	        prompt: 'File must be a valid image (jpg, png, gif, or bmp)'
+	      }
+	    ]
+	  },
 	  step: {
 	    identifier: 'step',
 	    rules: [
@@ -117,4 +142,7 @@ window.experienceForm.validate = (form) ->
 	      }
 	    ]
 	  }
-	})
+	},
+	{
+		inline: true
+	});
