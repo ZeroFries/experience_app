@@ -3,7 +3,7 @@
 class Experience < ActiveRecord::Base
   belongs_to :user
   
-  has_attached_file :avatar, :styles => { :medium => "300x300>", :thumb => "100x100>" }, :default_url => 'fractal.gif'
+  has_attached_file :avatar, :styles => { :medium => "260x130>", :thumb => "100x100>" }, :default_url => 'fractal.gif'
   validates_attachment_content_type :avatar, :content_type => /\Aimage\/.*\Z/
   has_many :experience_emotions
   accepts_nested_attributes_for :experience_emotions, allow_destroy: true

@@ -1,34 +1,3 @@
-<!-- <div class="column">
-	<article class="experience-card ui" style="position: relative;">
-		<span class="rating ui label small top left attached black" title="Rating"><%= experience.rating %></span>
-		<%= image_tag experience.avatar.url, class: "circular ui image small thumbnail" %>
-		<span class="rating ui label small top right attached purple" title="Price">$10-12<%#= experience.price %></span>
-		<h3 class="title ui header"><%= experience.title %></h3>
-		<h3 class="description"><%= trailing_description experience.description %></h3>
-		<% if experience.emotions.any? %>
-			<div class="label-group mood ui small labels">
-				<% experience.emotions.each do |emotion| %>
-					<%= render "emotions/label", emotion: emotion %>
-				<% end %>
-			</div>
-		<% end %>
-		<% if experience.categories.any? %>
-			<div class="label-group tags ui tiny labels">
-				<% experience.categories.each do |category| %>
-					<%= render "categories/label", category: category %>
-				<% end %>
-			</div>
-		<% end %>
-		<% if experience.user %>
-			<span class="user-tag">Submitted by 
-				<i style="font-style: italic;"><%= experience.user.username %></i>
-				<%= time_ago experience.created_at %>
-			</span>
-		<% end %>
-
-	</article>
-</div> -->
-
 <div class="column">
 	<article class="experience-card ui segment" style="position: relative;">
 		<div class="image-meta-container">
@@ -40,6 +9,7 @@
 			</div>
 			<%= image_tag experience.avatar.url, class: "thumbnail" %>
 		</div>
+		
 		<h3 class="title ui header"><%= experience.title %></h3>
 		<h3 class="description"><%= trailing_description experience.description %></h3>
 
