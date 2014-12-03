@@ -83,6 +83,7 @@ window.experienceForm.validate = (form) ->
 		].join("|")
 		numberRange = "(\\d+(\\.\\d+)?(\\-\\d+(\\.\\d+)?)?\\s?)"
 		matcher = new RegExp("#{numberRange}(#{units})\\s", "i")
+		console.log matcher
 		matcher.test "#{s} "
 
 	$.fn.form.settings.rules.isImage = (s) ->

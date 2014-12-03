@@ -10,17 +10,39 @@
     src: url('/assets/Karma-Bold.ttf') format('truetype');
 }
 
+@font-face {
+    font-family: 'Karma';
+    src: url('/assets/Karma-Regular.ttf');
+    src: url('/assets/Karma-Regular.ttf') format('truetype');
+}
+
 
 @font-face {
-    font-family: 'TallFilm';
-    src: url('/assets/TallFilm.ttf');
-    src: url('/assets/TallFilm.ttf') format('truetype');
+    font-family: 'BebasNeue';
+    src: url('/assets/BebasNeue-Regular.ttf');
+    src: url('/assets/BebasNeue-Regular.ttf') format('truetype');
 }
 
-body {
-	font-family: TallFilm;
+@font-face {
+    font-family: 'BebasNeue-Bold';
+    src: url('/assets/BebasNeue-Bold.ttf');
+    src: url('/assets/BebasNeue-Bold.ttf') format('truetype');
 }
 
-h2 {
-	font-family: TallFilm !important;
+@font-face {
+    font-family: 'BebasNeue-Light';
+    src: url('/assets/BebasNeue-Light.ttf');
+    src: url('/assets/BebasNeue-Light.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'BebasNeue-Book';
+    src: url('/assets/BebasNeue-Book.ttf');
+    src: url('/assets/BebasNeue-Book.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'BebasNeue-Thin';
+    src: url('/assets/BebasNeue-Thin.ttf');
+    src: url('/assets/BebasNeue-Thin.ttf') format('truetype');
 }

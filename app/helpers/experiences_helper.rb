@@ -12,4 +12,12 @@ module ExperiencesHelper
 		  description.length > 60 ? "#{description[0..60]}..."  : description
 		end
 	end
+
+	def price_to_description(price)
+		['Free', 'Cheap', 'Affordable', 'Expensive'][price.to_i]
+	end
+
+	def price_to_dollar_sign(price)
+		['_', '$', '$$', '$$$'][price.to_i]
+	end
 end
