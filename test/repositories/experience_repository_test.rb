@@ -36,7 +36,7 @@ class ExperienceRepositoryTest < ActiveSupport::TestCase
   	assert_equal 0, results.size
   end
 
-  test '#search for emotion' do
+  test '#search for emotion with names' do
   	create_experiences
   	results = @repo.search emotions: ['anger']
   	assert_equal 2, results.size
@@ -51,7 +51,16 @@ class ExperienceRepositoryTest < ActiveSupport::TestCase
   	assert_equal 0, results.size
   end
 
-  test '#search for category' do
+  test '#search for emotion with ids' do
+    create_experiences
+    results = @repo.search emotions: [Emotion.first.id]
+    assert_equal 1, results.size
+
+    results = @repo.search emotions: [999]
+    assert_equal 0, results.size
+  end
+
+  test '#search for category with names' do
   	create_experiences
   	results = @repo.search categories: ['art']
   	assert_equal 1, results.size

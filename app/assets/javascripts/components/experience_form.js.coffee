@@ -20,7 +20,7 @@ window.experienceForm.component = flight.component ->
 		@formEvents()
 
 	@initializeUI = () ->
-		$('.ui.selection.dropdown').dropdown()
+		$('#experience_price').dropdown()
 		$('.ui.checkbox').checkbox()
 		$('.ui.accordion').accordion()
 

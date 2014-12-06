@@ -1,6 +1,8 @@
 .experience-card-container {
 	width: 75%;
-	margin-left: 20%;
+	margin-right: 5%;
+	float: right;
+	display: inline-block;
 }
 
 .experience-card {
@@ -166,5 +168,37 @@
 	width: 500px;
 	font-size: 20px;
 	color: black;
+}
+
+
+#browse {
+	display: inline-block;
+	width: 18%;
+	border-right: 2pt solid rgba(128, 128, 128, 0.18);
+	float: left;
+	min-height: 40em;
+	font-family: BebasNeue;	
+
+	.browse-header {
+		font-size: 1em;
+		letter-spacing: 0.2em;
+		color: rgba(128, 128, 128, 0.38);
+		margin: 1em 2em 1em 1em;
+		font-weight: 700;
+		border-bottom: 2pt solid rgba(128, 128, 128, 0.18);
+		padding-bottom: 0.2em;
+		width: 40%;
+	}
+
+	label {
+		font-size: 0.8em;
+		font-weight: 700;
+	}
+
+	.selection.dropdown {
+		max-height: 1em;
+		width: 84%;
+		.icon { float: right; }
+	}
 }
 
