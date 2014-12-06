@@ -13,7 +13,7 @@ window.experienceSearch.component = flight.component ->
 			if (!!e.keyCode && e.keyCode == 13) || !e.keyCode
 			 @trigger 'experiences:filter'
 
-		@on 'experiences:filter', @get_filtered_experiences
+		@on 'experiences:filter', @getFilteredExperiences
 
 	@addLabel = (e, data, dataName) ->
 		dataName = data.dataName if dataName == undefined
@@ -25,17 +25,16 @@ window.experienceSearch.component = flight.component ->
 		$label_container.append(labelHTML(data, nameToSingular[dataName]))
 		@trigger 'experiences:filter'
 
-	@get_filtered_experiences = ->
+	@getFilteredExperiences = ->
 		filters = { filters: {
 			keywords: @getKeywords(),
 			emotions: @getTagIds('emotions'),
 			categories: @getTagIds('categories')
 		}}
-		console.log @getPrice
 		if @getPrice() >= 0
 			filters.price = @getPrice()
-		console.log filters
-		window.history.pushState({"html":$('body').html(),"pageTitle": 'lol'},"", "/experiences/?#{$.param(filters)}")
+		window.updateURL "/experiences/?#{$.param(filters)}"
+		experiencesService.getExperiencesHtml(filters)
 
 	@getKeywords = -> $('#keywords').val().split " "
 	@getPrice = -> parseInt $('#price').dropdown('get value')

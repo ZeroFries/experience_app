@@ -1,9 +1,13 @@
 <%= render 'browse' %>
 
-<div class="experience-card-container">
+<div class="experience-card-container" id="experience-container">
   <div class="ui three column grid">
 		<% @experiences.each_with_index do |experience, i| %>
 			<%= render 'experience_card', experience: experience %>
 		<% end %>
 	</div>
 </div>
+
+<script>
+	window.experienceList.component.attachTo('#experience-container');
+</script>
