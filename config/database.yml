@@ -11,7 +11,7 @@ default: &default
   timeout: 5000
   prepared_statements: false
   host: localhost
-  username: ZeroDB
+  username: zero_db
   password: popcornDB!
 
 development:

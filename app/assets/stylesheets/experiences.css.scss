@@ -200,5 +200,12 @@
 		width: 84%;
 		.icon { float: right; }
 	}
+
 }
 
+.remove-label {
+    position: relative;
+    left: 0.8em;
+    bottom: 0.4em;
+    cursor: pointer;
+}

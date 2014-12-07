@@ -4,16 +4,19 @@
 	<div class="ui form" style="padding: 1em;">
 
 		<div class="ui field">
-			<label><i class="search icon"></i>  	Keywords</label>	
+			<label><i class="search icon"></i>  Keywords</label>	
 			<div class="ui mini icon input">
-				<input id="keywords" type="text" placeholder="E.g cottage activities"></input>
+				<input id="keywords" type="text" placeholder="E.g cottage activities"
+				value="<%= params[:filters]['keywords'].join(' ') %>"></input>
 				<i class="search icon"></i>
 			</div>
 		</div>
 
 		<div class="ui field">
 			<label><i class="heart icon"></i> Emotions</label>	
-			<div id="emotions-label-container"></div>
+			<div id="emotions-label-container">
+				<%= render 'browse_labels', models: @emotions if @emotions %>
+			</div>
 			<div class="ui mini icon input">
 				<input type="text" id="emotions" class="typeahead" placeholder="E.g relaxation, excitement"></input>
 				<i class="search icon"></i>
@@ -22,7 +25,9 @@
 
 		<div class="ui field">
 			<label><i class="tag icon"></i> Categories</label>
-			<div id="categories-label-container"></div>	
+			<div id="categories-label-container">
+				<%= render 'browse_labels', models: @categories if @categories %>
+			</div>	
 			<div class="ui mini icon input">
 				<input type="text" id="categories" class="typeahead" placeholder="E.g romantic, game"></input>
 				<i class="search icon"></i>
@@ -31,21 +36,20 @@
 
 
     <div class="ui field">
-			<label><i class="dollar icon"></i> Price</label>	
+		<label><i class="dollar icon"></i> Price</label>	
 
-			<div class="ui selection dropdown" id="price">
-				<input name="gender" type="hidden">
-        <div class="default text">-</div>
-        <i class="dropdown icon"></i>
-        <div style="" tabindex="-1" class="menu transition hidden">
-        	<div class="item" data-value="">-</div>
-          <div class="item" data-value="0">Free</div>
-          <div class="item" data-value="1">Cheap</div>
-          <div class="item" data-value="2">Affordable</div>
-          <div class="item" data-value="3">Expensive</div>
-        </div>
-			</div>
+		<div class="ui selection dropdown" id="price">
+        	<div class="default text"><%= params[:filters]['price'].to_i %></div>
+        	<i class="dropdown icon"></i>
+        	<div style="" tabindex="-1" class="menu transition hidden">
+    	  		<div class="item" data-value="">-</div>
+          		<div class="item" data-value="0">Free</div>
+				<div class="item" data-value="1">Cheap</div>
+				<div class="item" data-value="2">Affordable</div>
+				<div class="item" data-value="3">Expensive</div>
+        	</div>
 		</div>
+	</div>
 
 		<!-- <div class="ui field">
 			<label><i class="dollar icon"></i> Price</label>	

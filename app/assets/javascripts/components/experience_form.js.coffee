@@ -9,12 +9,18 @@ stepInputHTML = () ->
 	"</i></div></input></div></div>"
 
 labelHTML = (obj, objTypeSingle, objTypePlural) ->
-	console.log objTypeSingle
 	"<span class=\"category ui label #{obj.label_colour}\">#{obj.name}" +
+	"<i class=\"remove-label remove icon\"></i>" +
 	"<input type=\"hidden\" name=\"experience[experience_#{objTypePlural}_attributes][][#{objTypeSingle}_id]\" value=\"#{obj.id}\" class=\"#{objTypeSingle}_id\">" + 
 	"</input></span>"
 
 window.experienceForm.component = flight.component ->
+	@attributes({
+		addStepSelector: '#add-step',
+		removeLabelSelector: '.remove-label',
+		removeStepSelector: '.remove-step'
+	})
+
 	@after 'initialize', ->
 		@initializeUI()
 		@formEvents()
@@ -28,7 +34,11 @@ window.experienceForm.component = flight.component ->
 		@on 'keypress', (e) ->
 			e.preventDefault() if e.keyCode == 13
 		@on document, 'removeStep', @removeStep
-		$('#add-step').on 'click', @addStep
+		@on 'click', {
+			addStepSelector: @addStep,
+			removeStepSelector: @removeStep,
+			removeLabelSelector: @removeLabel
+		}
 		that = this
 		$('#add-step').on 'keypress', (e) ->
 			that.addStep() if e.keyCode == 13
@@ -37,12 +47,9 @@ window.experienceForm.component = flight.component ->
 	@addStep = () ->
 		step = $(stepInputHTML())
 		$('#step-container').append step
-		step.find('.description').focus()
-		stepRemover = step.find '.remove-step'
-		removeStep.attachTo stepRemover
 
 	@removeStep = (e, data) ->
-		$step = $(data.stepRemover).parents('.experience-step')[0]
+		$step = $(e.target).parents('.experience-step')[0]
 		$step.remove()
 		for step, i in $('.experience-step')
 			$(step).find('.description').attr('placeholder', "Step #{i+1}")
@@ -54,16 +61,16 @@ window.experienceForm.component = flight.component ->
 			'emotions': 'emotion',
 			'categories': 'category'
 		}
-		$label_container = $("##{dataName}-label-container")
-		$label_container.append(labelHTML(data, nameToSingular[dataName], dataName))
+		if !@alreadyBeenAdded(data, nameToSingular[dataName])
+			$labelContainer = $("##{dataName}-label-container")
+			$labelContainer.append(labelHTML(data, nameToSingular[dataName]))
 
-removeStep = flight.component ->
-	@after 'initialize', ->
-		@on 'click', @triggerRemoveStep
-		# TODO: add esc keypress event
+	@alreadyBeenAdded = (obj, objType) ->
+		labelVals = $.map $(".#{objType}_id"), (input) -> parseInt $(input).val()
+		labelVals.indexOf(obj.id) > -1
 
-	@triggerRemoveStep = ->
-		@trigger document, 'removeStep', {stepRemover: @node}
+	@removeLabel = (e, data) ->
+		$(e.target).parents('.ui.label')[0].remove()
 
 
 # ********* Form Validation *********

@@ -1,28 +1,46 @@
 labelHTML = (obj, objType) ->
 	"<span class=\"ui label #{obj.label_colour}\">#{obj.name}" +
-	"<input type=\"hidden\" name=\"#{objType}_id\" value=\"#{obj.id}\" class=\"#{objType}_id\">" + 
+	"<i class=\"remove-label remove icon\"></i>" +
+	"<input type=\"hidden\" name=\"#{objType}_id\" value=\"#{obj.id}\" class=\"#{objType}_id\">" +
 	"</input></span>"
 
 window.experienceSearch.component = flight.component ->
+	@attributes({
+		removeLabelSelector: '.remove-label',
+		dropDownItemSelector: '.item'
+	})
+
 	@after 'initialize', ->
 		$('.ui.selection.dropdown').dropdown()
-		@on '.item', 'click', ->
-			@trigger 'experiences:filter'
+		@on 'click', {
+			removeLabelSelector: ((e, data) -> @removeLabel(e, data)),
+			dropDownItemSelector: (-> @trigger 'experiences:filter')
+		}
 		@on document, 'typeahead:autocompleted', @addLabel
 		@on '#keywords', 'keydown blur', (e) ->
 			if (!!e.keyCode && e.keyCode == 13) || !e.keyCode
-			 @trigger 'experiences:filter'
+				@trigger 'experiences:filter'
 
 		@on 'experiences:filter', @getFilteredExperiences
 
 	@addLabel = (e, data, dataName) ->
-		dataName = data.dataName if dataName == undefined
-		nameToSingular = {
-			'emotions': 'emotion',
-			'categories': 'category'
-		}
-		$label_container = $("##{dataName}-label-container")
-		$label_container.append(labelHTML(data, nameToSingular[dataName]))
+			dataName = data.dataName if dataName == undefined
+			nameToSingular = {
+				'emotions': 'emotion',
+				'categories': 'category'
+			}
+			if !@alreadyBeenAdded(data, nameToSingular[dataName])
+				$labelContainer = $("##{dataName}-label-container")
+				$labelContainer.append(labelHTML(data, nameToSingular[dataName]))
+				@trigger 'experiences:filter'
+
+	@alreadyBeenAdded = (obj, objType) ->
+		labelVals = $.map $(".#{objType}_id"), (input) -> parseInt $(input).val()
+		labelVals.indexOf(obj.id) > -1
+
+
+	@removeLabel = (e, data) ->
+		$(e.target).parents('.ui.label')[0].remove()
 		@trigger 'experiences:filter'
 
 	@getFilteredExperiences = ->
@@ -32,7 +50,7 @@ window.experienceSearch.component = flight.component ->
 			categories: @getTagIds('categories')
 		}}
 		if @getPrice() >= 0
-			filters.price = @getPrice()
+			filters.filters.price = @getPrice()
 		window.updateURL "/experiences/?#{$.param(filters)}"
 		experiencesService.getExperiencesHtml(filters)
 

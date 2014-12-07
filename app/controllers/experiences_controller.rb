@@ -9,7 +9,6 @@ class ExperiencesController < ApplicationController
 	end
 
 	def create
-		p params
 		@experience, success, error = @repo.create params[:experience]
 		render_json_show success, error
 	end
@@ -35,6 +34,8 @@ class ExperiencesController < ApplicationController
 
 	def index
 		@experiences = @repo.search params[:filters]
+		@emotions = Emotion.where(id: params[:filters]['emotions']) unless params[:filters]['emotions'].blank?
+		@categories = Category.where(id: params[:filters]['categories']) unless params[:filters]['categories'].blank?
 	end
 
 	protected
