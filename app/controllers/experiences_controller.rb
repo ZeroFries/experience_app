@@ -34,8 +34,10 @@ class ExperiencesController < ApplicationController
 
 	def index
 		@experiences = @repo.search params[:filters]
-		@emotions = Emotion.where(id: params[:filters]['emotions']) unless params[:filters]['emotions'].blank?
-		@categories = Category.where(id: params[:filters]['categories']) unless params[:filters]['categories'].blank?
+		if params[:filters]
+			@emotions = Emotion.where(id: params[:filters]['emotions']) unless params[:filters]['emotions'].blank?
+			@categories = Category.where(id: params[:filters]['categories']) unless params[:filters]['categories'].blank?
+		end
 	end
 
 	protected

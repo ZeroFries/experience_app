@@ -177,15 +177,19 @@
 	border-right: 2pt solid rgba(128, 128, 128, 0.18);
 	float: left;
 	min-height: 40em;
-	font-family: BebasNeue;	
+	font-family: BebasNeue;
+	position: absolute;
+	left: 0;
+	top: 0;
+	padding-top: 1.2em;	
 
 	.browse-header {
 		font-size: 1em;
 		letter-spacing: 0.2em;
-		color: rgba(128, 128, 128, 0.38);
+		color: rgba(255, 255, 255, 0.9);
 		margin: 1em 2em 1em 1em;
 		font-weight: 700;
-		border-bottom: 2pt solid rgba(128, 128, 128, 0.18);
+		border-bottom: 2pt solid rgba(255, 255, 255, 0.9);
 		padding-bottom: 0.2em;
 		width: 40%;
 	}

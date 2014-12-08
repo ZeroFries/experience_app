@@ -7,7 +7,7 @@
 			<label><i class="search icon"></i>  Keywords</label>	
 			<div class="ui mini icon input">
 				<input id="keywords" type="text" placeholder="E.g cottage activities"
-				value="<%= params[:filters]['keywords'].join(' ') %>"></input>
+				value="<%= params[:filters]['keywords'].join(' ') if params[:filters] && params[:filters]['keywords'] %>"></input>
 				<i class="search icon"></i>
 			</div>
 		</div>
@@ -39,7 +39,7 @@
 		<label><i class="dollar icon"></i> Price</label>	
 
 		<div class="ui selection dropdown" id="price">
-        	<div class="default text"><%= params[:filters]['price'].to_i %></div>
+        	<div class="default text"><%= params[:filters]['price'].to_i if params[:filters] %></div>
         	<i class="dropdown icon"></i>
         	<div style="" tabindex="-1" class="menu transition hidden">
     	  		<div class="item" data-value="">-</div>
