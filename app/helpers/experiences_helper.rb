@@ -7,12 +7,6 @@ module ExperiencesHelper
 		end.reverse
 	end
 
-	def trailing_description(description)
-		if description
-		  description.length > 60 ? "#{description[0..60]}..."  : description
-		end
-	end
-
 	def price_to_description(price)
 		['Free', 'Cheap', 'Affordable', 'Expensive'][price.to_i]
 	end

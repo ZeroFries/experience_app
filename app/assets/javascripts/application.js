@@ -14,7 +14,6 @@
 //= require flight-for-rails
 //= require_tree ../../../lib/assets/javascripts/
 //= require jquery_ujs
-//= require turbolinks
 //= require semantic
 //= require type_ahead
 //= require main

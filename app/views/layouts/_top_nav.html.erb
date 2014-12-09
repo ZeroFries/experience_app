@@ -1,10 +1,8 @@
 <div class="nav-bar top" id="main-menu">
 	<ul class="float-left">
 		<li>
-			
-				
-				<%= link_to raw("<button class=\"ui button mini circular orange\">" +
-				"<i class=\"plus icon\"></i>Add Your Experience</button>"), new_experience_path, class: "menu-link new-experience-button" %>
+			<%= link_to raw("<button class=\"ui button mini circular orange\">" +
+			"<i class=\"plus icon\"></i>Add Your Experience</button>"), new_experience_path, class: "menu-link new-experience-button" %>
 			
 		</li> 
 	</ul>
@@ -19,7 +17,6 @@
 			<% else %>
 				<%= link_to raw("<i class=\"user icon\"></i> Login/Register"), new_user_path, class: "menu-link" %>
 			<% end %>
-			
 			
 		</li> 
 	</ul>

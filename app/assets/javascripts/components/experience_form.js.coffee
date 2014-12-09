@@ -63,7 +63,7 @@ window.experienceForm.component = flight.component ->
 		}
 		if !@alreadyBeenAdded(data, nameToSingular[dataName])
 			$labelContainer = $("##{dataName}-label-container")
-			$labelContainer.append(labelHTML(data, nameToSingular[dataName]))
+			$labelContainer.append(labelHTML(data, nameToSingular[dataName], dataName))
 
 	@alreadyBeenAdded = (obj, objType) ->
 		labelVals = $.map $(".#{objType}_id"), (input) -> parseInt $(input).val()

@@ -24,15 +24,15 @@ window.experienceSearch.component = flight.component ->
 		@on 'experiences:filter', @getFilteredExperiences
 
 	@addLabel = (e, data, dataName) ->
-			dataName = data.dataName if dataName == undefined
-			nameToSingular = {
-				'emotions': 'emotion',
-				'categories': 'category'
-			}
-			if !@alreadyBeenAdded(data, nameToSingular[dataName])
-				$labelContainer = $("##{dataName}-label-container")
-				$labelContainer.append(labelHTML(data, nameToSingular[dataName]))
-				@trigger 'experiences:filter'
+		dataName = data.dataName if dataName == undefined
+		nameToSingular = {
+			'emotions': 'emotion',
+			'categories': 'category'
+		}
+		if !@alreadyBeenAdded(data, nameToSingular[dataName])
+			$labelContainer = $("##{dataName}-label-container")
+			$labelContainer.append(labelHTML(data, nameToSingular[dataName]))
+			@trigger 'experiences:filter'
 
 	@alreadyBeenAdded = (obj, objType) ->
 		labelVals = $.map $(".#{objType}_id"), (input) -> parseInt $(input).val()

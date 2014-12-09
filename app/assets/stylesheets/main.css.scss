@@ -47,6 +47,27 @@
     src: url('/assets/BebasNeue-Thin.ttf') format('truetype');
 }
 
+.top-banner {
+    display: block;
+}
+
+#app-name {
+    font-family: BebasNeue-Bold;
+    font-size: 4em;
+    color: #374249;
+    position: absolute;
+    left: 35%;
+    top: 0.45em;
+}
+
+#catch-phrase {
+    font-family: BebasNeue;
+    font-size: 1.2em;
+    position: absolute;
+    color: #374249;
+    left: 35%;
+    top: 4.6em;
+}
 
 .nav-bar.top {
     font-family: BebasNeue;
@@ -54,7 +75,7 @@
     height: 4em;
     background: #374249;
     ul {
-        margin-left: 18em;
+        margin-left: 16em;
         display: inline-block;
     }
 
