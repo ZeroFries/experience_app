@@ -1,0 +1,81 @@
+<article class="experience-container">
+	<%= image_tag(@experience.avatar.url, class: "headpiece") %>
+
+	<div class="content-container">
+
+		<h3 class="title ui header"><%= @experience.title %></h3>
+
+		<div class="meta-container">
+			<div class="tags-container">
+				<div class="label-group mood ui small labels">
+					<% @experience.emotions.each do |emotion| %>
+						<%= render "emotions/label", emotion: emotion %>
+					<% end %>
+				</div>
+				<div class="label-group tags ui tiny labels">
+					<% @experience.categories.each do |category| %>
+						<%= render "categories/label", category: category %>
+					<% end %>
+				</div>
+
+				<% if @experience.user %>
+					<div class="user-tag"> 
+						<%= link_to @experience.user.username, users_path(@experience.user) %> - 
+						<%= time_ago @experience.created_at %>
+						<span class="price">
+							<%= price_to_description @experience.price %>
+						</span>
+					</div>
+				<% end %>
+
+			</div>
+		</div>
+
+		<div class="description"><%= @experience.description %></div>
+
+		<div class="materials">
+			<h4 class="experience-sub-header">Materials Needed</h4>
+			<ul>
+				<% @experience.materials.split(/\,\s*/).each do |material| %>
+					<li><%= material %></li>
+				<% end %>
+			</ul>
+		</div>
+
+		<div class="steps">
+			<h4 class="experience-sub-header">Steps</h4>
+			<ul>
+				<% @experience.steps.each do |step| %>
+					<li><%= step.description %></li>
+				<% end %>
+			</ul>
+		</div>
+
+		<% if @experience.location_dependent %>
+			<div class="location">
+				<h4 class="experience-sub-header">Location</h4>
+			</div>
+		<% end %>
+
+		<div class="ui comments">
+  			<h3 class="ui dividing header">Comments</h3>
+  			<% @experience.comments.each do |comment| %>
+  				<div class="comment">
+				    <div class="content">
+				      <a class="author"><%= comment.user.username %></a>
+				      <div class="metadata">
+				        <span class="date"> - <%= time_ago comment.created_at %></span>
+				      </div>
+				      <div class="text">
+				        <%= comment.user.username %>
+				      </div>
+				      <div class="actions">
+				        <a class="reply">Reply</a>
+				      </div>
+				    </div>
+				  </div>
+  			<% end %>
+  		</div>
+
+	</div>
+</article>
