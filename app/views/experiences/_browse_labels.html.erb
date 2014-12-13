@@ -1,0 +1,6 @@
+<% models.each do |model| %>
+	<span class="ui label <%= model.label_colour %>"><%= model.name %>
+		<i class="remove-label remove icon"></i>
+		<input type="hidden" name="<%= model.class.to_s.downcase %>_id" value="<%= model.id %>" class="<%= model.class.to_s.downcase %>_id">
+	</input></span>
+<% end %>

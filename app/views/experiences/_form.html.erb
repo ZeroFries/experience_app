@@ -1,0 +1,75 @@
+<div id='experience-form' class='experience-form ui form segment mini'>
+	<%= form_for @experience do |f| %>
+		<div class="field ui input mini">
+			<%= f.label 'Title or name' %>
+			<%= f.text_field :title, placeholder: 'E.g. Going For a Walk' %>
+		</div>
+
+		<div class="field ui input mini">
+			<%= f.label 'Brief description' %>	
+			<%= f.text_area :description, placeholder: 'E.g. Get outside and enjoy some fresh air and exercise!' %>
+		</div>
+
+		<div class="field ui input mini">
+			<%= f.label 'Upload an associated image' %>	
+			<%= f.file_field :avatar %>
+		</div>
+
+		<div class="field ui input mini ui input mini">
+			<%= f.label 'Materials needed (* denotes optional items)' %>
+			<%= f.text_field :materials, placeholder: 'E.g. Pair of good shoes, *jacket, *MP3' %>
+		</div>
+
+		<!-- TODO: steps, emotions, and categories from existing experience -->
+		<div class="field ui input mini" id="step-container">
+			<%= f.label 'Steps to reproduce' %>
+		</div>
+		<button type="button" id="add-step" class="ui purple button mini" onkeypress="return null">Add Step</button>
+ 
+		<!-- TODO: Figure out if emotions should by nouns or verbs (relation vs relaxing) -->
+		<div class="field ui input mini" id="step-container">
+			<%= f.label 'Emotions involved' %>
+			<div id="emotions-label-container" class="label-group mood ui small labels"></div>
+		 	<input id="emotions" class="typeahead" type="text" placeholder="E.g. Relaxation, Contemplation">
+		</div>
+
+		<div class="field ui input mini" id="step-container">
+			<%= f.label 'Categories' %>
+			<div id="categories-label-container" class="label-group mood ui small labels"></div>
+		 	<input id="categories" class="typeahead" type="text" placeholder="E.g. Leisure, Active">
+		</div>
+
+		<div class="field ui input mini">
+			<%= f.label 'Time required' %>
+			<%= f.text_field :time_required, placeholder: 'E.g. 15-45 minutes' %>
+		</div>
+
+		<div class="field ui input mini">
+			<%= f.label 'Price' %>
+			<div class="">
+				<%= f.select :price, [['Free', 0], ['Cheap', 1], ['Affordable', 2], ['Expensive', 3]], class: "item" %>
+			</div>
+		</div>
+
+		<div class="ui basic accordion field">
+			<label class="title"><i class="dropdown icon"></i>Location specific?</label>
+			<div class="content field">Hi</div>
+			
+			<%#= f.check_box :location_dependent %>
+			<%#= f.label :location_dependent, 'Location specific?', class: "title active" %>
+		</div>
+
+		<%= f.submit "ADD EXPERIENCE", class: "ui large green button submit" %>
+	<% end %>
+</div>
+
+<script>
+	window.experienceForm.component.attachTo('#experience-form');
+	window.experienceForm.validate('#experience-form');
+
+	window.typeAhead.component.attachTo('#emotions.typeahead');
+	window.typeAhead.component.attachTo('#categories.typeahead');
+
+	window.emotionsService.getEmotions();
+	window.categoriesService.getCategories();
+</script>

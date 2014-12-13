@@ -1,0 +1,43 @@
+<div class="column">
+	<%= link_to experience do %>
+		<article class="experience-card ui segment" style="position: relative;">
+			<div class="image-meta-container">
+				<div class="ui top left attached label purple" title="Rating" style="border-radius:0; z-index:999;">
+					<i class="heart icon"></i>978<%#= experience.rating %>
+				</div>
+				<%= image_tag(experience.avatar.url, class: "thumbnail") %>
+			</div>
+
+			<div class="content-container">
+				
+				<h3 class="title ui header"><%= experience.title %></h3>
+				<h4 class="description"><%= truncate experience.description, length: 83 %></h4>
+
+				<div class="tags-container">
+					<div class="label-group mood ui small labels">
+						<% experience.emotions.each do |emotion| %>
+							<%= render "emotions/label", emotion: emotion %>
+						<% end %>
+					</div>
+					<div class="label-group tags ui tiny labels">
+						<% experience.categories.each do |category| %>
+							<%= render "categories/label", category: category %>
+						<% end %>
+					</div>
+
+					<% if experience.user %>
+						<div class="user-tag"> 
+							<%= link_to experience.user.username, users_path(experience.user) %> - 
+							<%= time_ago experience.created_at %>
+							<span class="price">
+								<%= price_to_description experience.price %>
+							</span>
+						</div>
+					<% end %>
+
+				</div>
+			</div>
+			
+		</article>
+	<% end %>
+</div>

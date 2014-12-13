@@ -11,6 +11,12 @@
 // about supported directives.
 //
 //= require jquery
+//= require flight-for-rails
+//= require_tree ../../../lib/assets/javascripts/
 //= require jquery_ujs
-//= require turbolinks
+//= require semantic
+//= require type_ahead
+//= require main
+//= require emotions
+//= require categories
 //= require_tree .

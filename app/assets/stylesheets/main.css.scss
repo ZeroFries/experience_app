@@ -1,0 +1,99 @@
+@font-face {
+    font-family: 'Karma';
+    src: url('/assets/Karma-Regular.ttf');
+    src: url('/assets/Karma-Regular.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'KarmaBold';
+    src: url('/assets/Karma-Bold.ttf');
+    src: url('/assets/Karma-Bold.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'Karma';
+    src: url('/assets/Karma-Regular.ttf');
+    src: url('/assets/Karma-Regular.ttf') format('truetype');
+}
+
+
+@font-face {
+    font-family: 'BebasNeue';
+    src: url('/assets/BebasNeue-Regular.ttf');
+    src: url('/assets/BebasNeue-Regular.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'BebasNeue-Bold';
+    src: url('/assets/BebasNeue-Bold.ttf');
+    src: url('/assets/BebasNeue-Bold.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'BebasNeue-Light';
+    src: url('/assets/BebasNeue-Light.ttf');
+    src: url('/assets/BebasNeue-Light.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'BebasNeue-Book';
+    src: url('/assets/BebasNeue-Book.ttf');
+    src: url('/assets/BebasNeue-Book.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'BebasNeue-Thin';
+    src: url('/assets/BebasNeue-Thin.ttf');
+    src: url('/assets/BebasNeue-Thin.ttf') format('truetype');
+}
+
+.top-banner {
+    display: block;
+}
+
+#app-name {
+    font-family: BebasNeue-Bold;
+    font-size: 4em;
+    color: #374249;
+    position: absolute;
+    left: 35%;
+    top: 0.45em;
+}
+
+#catch-phrase {
+    font-family: BebasNeue;
+    font-size: 1.2em;
+    position: absolute;
+    color: #374249;
+    left: 35%;
+    top: 4.6em;
+}
+
+.nav-bar.top {
+    font-family: BebasNeue;
+    font-weight: 700;
+    height: 4em;
+    background: #374249;
+    ul {
+        margin-left: 16em;
+        display: inline-block;
+    }
+
+
+    li {
+        vertical-align: top;
+        padding: 1em;
+
+        display: inline-block;
+        a { 
+            display: inline-block;
+            height: 2em;
+            line-height: 2em;
+            text-decoration: none; 
+            color: rgba(255, 255, 255, 0.9);
+        }
+    }
+}
+
+.float-right { float: right; }
+.float-left { float: left; }
